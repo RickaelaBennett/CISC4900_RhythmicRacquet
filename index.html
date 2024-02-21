@@ -1,0 +1,35 @@
+<head>
+<title>Rhythmic Racquet</title>
+
+<style>
+    canvas{
+        border: solid blanchedalmond;
+        background-color: skyblue;
+    }
+</style>
+</head>
+
+<body>
+    <div id= "canvas"></div>
+    <body onload= "startGame()">
+        <h1> Title </h1>
+        <script>
+            var width = 960;
+            var height = 640;
+
+            function startGame(){
+                loadCanvas.start();
+            }
+
+            var loadCanvas = {
+                canvas: document.createElement("canvas"),
+                start: function(){
+                    this.canvas.width = width;
+                    this.canvas.height = height;
+                    this.context = this.canvas.getContext(2);
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                }
+            }
+        </script>
+    </body>
+</body>
