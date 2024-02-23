@@ -16,12 +16,26 @@
         <script>
             var width = 960;
             var height = 640;
+            var char;
+            var charYPos=200;
 
             function startGame(){
-                loadCanvas.start();
+                gameCanvas.start();
+                player = new createPlayer(60, 60, 10);
+            }      
+
+            function createPlayer(width, height, x){
+                this.width = width;
+                this.height = height;
+                this.x = x;
+                this.y = charYPos;
+
+                ctx = gameCanvas.context;
+                ctx.fillStyle = "green";
+                ctx.fillRect = (this.x, this.y, this.width, this.height);
             }
 
-            var loadCanvas = {
+            var gameCanvas = {
                 canvas: document.createElement("canvas"),
                 start: function(){
                     this.canvas.width = width;
@@ -30,6 +44,7 @@
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 }
             }
+
         </script>
     </body>
 </body>
