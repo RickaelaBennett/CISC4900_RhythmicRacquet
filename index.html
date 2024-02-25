@@ -1,50 +1,26 @@
-<head>
-<title>Rhythmic Racquet</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rhythmic Racquet</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.js"></script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+        background-color: rgb(208, 192, 239);
+     }
+      canvas {
+        display: block;
+}
 
-<style>
-    canvas{
-        border: solid blanchedalmond;
-        background-color: skyblue;
-    }
-</style>
-</head>
-
-<body>
-    <div id= "canvas"></div>
-    <body onload= "startGame()">
-        <h1> Title </h1>
-        <script>
-            var width = 960;
-            var height = 640;
-            var char;
-            var charYPos=200;
-
-            function startGame(){
-                gameCanvas.start();
-                player = new createPlayer(60, 60, 10);
-            }      
-
-            function createPlayer(width, height, x){
-                this.width = width;
-                this.height = height;
-                this.x = x;
-                this.y = charYPos;
-
-                ctx = gameCanvas.context;
-                ctx.fillStyle = "green";
-                ctx.fillRect = (this.x, this.y, this.width, this.height);
-            }
-
-            var gameCanvas = {
-                canvas: document.createElement("canvas"),
-                start: function(){
-                    this.canvas.width = width;
-                    this.canvas.height = height;
-                    this.context = this.canvas.getContext(2);
-                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-                }
-            }
-
-        </script>
-    </body>
-</body>
+      
+    </style>
+  </head>
+  <body>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
