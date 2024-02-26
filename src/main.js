@@ -1,14 +1,14 @@
-import Phaser from "phaser";
-import mainmenu from "./src/mainmenu.js";
+/*import Phaser from "phaser";*/
+import mainmenu from "./mainmenu.js";
 
+//game configurations
 const config = {
     type: Phaser.AUTO,
-    width: 400,
-    height: 400,
+    width: 800,
+    height: 600,
 };
 
 const game = new Phaser.Game(config);
-
 game.scene.add("gamemenu", mainmenu); //keys mainmenu.js to string mainmenu
 
 //runs our main menu
