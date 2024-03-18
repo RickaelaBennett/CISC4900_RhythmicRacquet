@@ -5,7 +5,7 @@ export default class mainmenu extends Phaser.Scene{
       }
     preload(){
         this.load.image("button", "assets/images/button.png")
-        this.load.image("background", "assets/images/bg.jpg")
+        this.load.image("background", "assets/images/bg.png")
     }
     create(){
         this.add.text(350, 100, "Main Menu");

@@ -10,9 +10,8 @@ export default class game extends Phaser.Scene{
         this.load.image("player", "assets/images/button.png");
     }
     create(){
-        this.add.text(350, 100, 'Game Screen');
-        this.add.image(100, 500, "player");
-        this.add.image(700, 500, "player");
+        
+        
     }
 }
 
