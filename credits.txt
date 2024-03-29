@@ -6,3 +6,6 @@ https://www.youtube.com/watch?v=uyhzCBEGaBY
 
 main tutorial used to help get started
 https://www.youtube.com/watch?v=f7c9mM7w2fc&list=PLNwtXgWIx3rg_fv93PMDFfXahzhXxGe5Z
+
+To make multiplayer
+https://colyseus.io/learn/
