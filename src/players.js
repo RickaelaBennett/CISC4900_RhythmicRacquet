@@ -1,6 +1,7 @@
-class Player extends Phaser.Physics.Arcade.Sprite {
+
+/*export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, size, Texture) {
-      super(scene, x, y, "player", Texture);
+      super({ key: "player" }, scene, x, y, Texture);
       scene.add.existing(this);
       scene.physics.world.enable(this);
       this.key = scene.input.keyboard.createCursorKeys();
@@ -24,5 +25,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         } else {
           this.setVelocityX(0);
         }
-      }
-}
+    }
+      
+}*/

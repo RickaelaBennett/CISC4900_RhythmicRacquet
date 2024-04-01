@@ -6,12 +6,20 @@ import Map1 from "./maps/map1.js";
 import Map2 from "./maps/map2.js";
 import choosemap from "./choosemap.js"
 
+
+
 //game configurations
 const config = {
     type: Phaser.AUTO,
     //canvas size
     width: 800,
     height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 }, // No gravity in this example
+        }
+    }
 };
 
 const game = new Phaser.Game(config);
