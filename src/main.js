@@ -12,12 +12,13 @@ import choosemap from "./choosemap.js"
 const config = {
     type: Phaser.AUTO,
     //canvas size
-    width: 800,
-    height: 600,
+    width: 1535,
+    height: 650,
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 }, // No gravity in this example
+            gravity: { y: 300 }, 
+            debug: true
         }
     }
 };
