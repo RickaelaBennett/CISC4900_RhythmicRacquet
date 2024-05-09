@@ -2,8 +2,11 @@ import mainmenu from "./mainmenu.js";
 import helpmenu from "./helpmenu.js";
 import optionsscreen from "./optionsmenu.js";
 
+import charselect from "./charselector.js";
+
 import Map1 from "./maps/map1.js";
 import Map2 from "./maps/map2.js";
+import Map3 from "./maps/map3.js";
 import choosemap from "./choosemap.js"
 
 
@@ -32,6 +35,8 @@ game.scene.add("optionsscreen", optionsscreen);
 game.scene.add("mapshop", choosemap);
 game.scene.add("map1", Map1);
 game.scene.add("map2", Map2);
+game.scene.add("map3", Map3);
+game.scene.add("characterscreen", charselect);
 
 //runs our main menu
 game.scene.start("mainmenu");

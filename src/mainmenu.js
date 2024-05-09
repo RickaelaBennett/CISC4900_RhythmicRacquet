@@ -23,7 +23,7 @@ export default class mainmenu extends Phaser.Scene{
         playButton.setInteractive();
         playButton.on("pointerdown", () => {
             this.scene.stop("mainmenu"); 
-            this.scene.start("mapshop");
+            this.scene.start("characterscreen");
         });
 
         //help button

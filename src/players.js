@@ -1,7 +1,6 @@
-
-export default class Player extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, size, Texture) {
-    super( {key: "player"}, scene, x, y, Texture);
+export default class Player extends Phaser.Physics.Arcade.Sprite{
+  constructor(scene, x, y, Texture) {
+    super(scene, x, y, Texture);
     scene.add.existing(this);
     scene.physics.world.enable(this);
     this.key = scene.input.keyboard.createCursorKeys();
@@ -11,6 +10,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.key.s = scene.input.keyboard.addKey('S');
 
     this.body.setCollideWorldBounds(true);
+    this.body.setSize(100, 100);
+    this.body.setBounce(1, 1);
+
   }
   update(){
     this.handleInput();
@@ -18,17 +20,80 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   handleInput(){
     this.body.setVelocity(0);
 
-    if (this.key.left.isDown || this.key.a.isDown) {
-        this.setVelocityX(-250);
-    } else if (this.key.right.isDown || this.key.d.isDown) {
-        this.setVelocityX(250);
-    } else if (this.key.up.isDown || this.key.w.isDown) {
-        this.setVelocityY(-250);
-    } else if (this.key.down.isDown || this.key.s.isDown) {
-        this.setVelocityY(250);
+    //movement
+    if (this.key.a.isDown) {
+        this.x -= 5;
+    } else if (this.key.d.isDown) {
+        this.x += 5;
+    } else if (this.key.w.isDown) {
+        this.y -= 5;
+    } else if (this.key.s.isDown) {
+        this.y += 5;
     } else {
         this.setVelocityX(0);
     }
-      
+  }
+}
+
+export class melodymatchpoint extends Player {
+  constructor(scene, x, y, Texture) {
+    super(scene, x, y, Texture);
+    scene.add.existing(this);
+    scene.physics.world.enable(this);
+    this.setGravityY(500);
+  }
+  
+}
+
+export class ryanracquet extends Player {
+  constructor(scene, x, y, Texture) {
+    super(scene, x, y, Texture);
+    scene.add.existing(this);
+    scene.physics.world.enable(this);
+    this.setGravityY(500);
+  }
+}
+
+export class sonicserve extends Player {
+  constructor(scene, x, y, Texture) {
+    super(scene, x, y, Texture);
+    scene.add.existing(this);
+    scene.physics.world.enable(this);
+    this.setGravityY(500);
+  }
+}
+
+export class Player2 extends Player {
+  //tester opponent
+  constructor(scene, x, y, Texture) {
+    super(scene, x, y, Texture);
+    scene.add.existing(this);
+    scene.physics.world.enable(this);
+    this.key = scene.input.keyboard.createCursorKeys();
+    this.setGravityY(1000);
+    
+
+  }
+  update(){
+    this.handleInput();
+  }
+  handleInput(){
+    this.body.setVelocity(0);
+
+    if (this.key.left.isDown) {
+        //this.setVelocityX(-250);
+        this.x -= 2;
+    } else if (this.key.right.isDown) {
+        //this.setVelocityX(250);
+        this.x += 2;
+    } else if (this.key.up.isDown) {
+        //this.setVelocityY(-250);
+        this.y -= 2;
+    } else if (this.key.down.isDown) {
+        //this.setVelocityY(250);
+        this.y += 2;
+    } else {
+        this.setVelocityX(0);
+    }
   }
 }
