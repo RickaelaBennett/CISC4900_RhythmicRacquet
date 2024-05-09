@@ -26,7 +26,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     } else if (this.key.d.isDown) {
         this.x += 5;
     } else if (this.key.w.isDown) {
-        this.y -= 5;
+        var new_pos = this.y-100;
+        var at_height = false
+        if(this.y < new_pos){
+          for(var i = 0; i < new_pos; i++){
+            this.y -= 10;
+          }   
+        } else if (this.y >= new_pos){
+          this.y = new_pos;
+          at_height = true;
+        }
+        if(at_height){
+          for(var i = 0; i < new_pos+100; i++){
+            this.y += 10;
+          }  
+        }
+
     } else if (this.key.s.isDown) {
         this.y += 5;
     } else {
@@ -46,7 +61,7 @@ export class melodymatchpoint extends Player {
 }
 
 export class ryanracquet extends Player {
-  constructor(scene, x, y, Texture) {
+  constructor(scene, x, y) {
     super(scene, x, y, Texture);
     scene.add.existing(this);
     scene.physics.world.enable(this);

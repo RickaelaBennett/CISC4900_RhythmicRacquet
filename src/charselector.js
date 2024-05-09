@@ -1,5 +1,7 @@
 import "./players.js";
-
+var choicep1 = 0;
+var choicep2 = 0;
+export {choicep1, choicep2};
 
 export default class charselect extends Phaser.Scene{
 
@@ -13,9 +15,9 @@ export default class charselect extends Phaser.Scene{
       }
       create(){
         //For each player, they have a choice between 3 characters, each character will be mapped to a number.
-        var choicep1 = 0;
-        var choicep2 = 0;
         var players_with_chars = 0;
+
+        this.add.text(700, 100, "Character Select");
 
         const char1 = this.add.image(384, 325, "red");
         //changes to game screen once the Play is pressed
@@ -27,7 +29,7 @@ export default class charselect extends Phaser.Scene{
             } else if (players_with_chars == 1){
                 choicep2 = 1;
             this.scene.stop("characterscreen"); 
-            this.scene.start("mapshop", {player1choice : 1}, {player2choice : 1});
+            this.scene.start("mapshop");
             }
         });
         const char2 = this.add.image(768, 325, "blue");
@@ -40,7 +42,7 @@ export default class charselect extends Phaser.Scene{
             } else if (players_with_chars == 1){
                 choicep2 = 2;
             this.scene.stop("characterscreen"); 
-            this.scene.start("mapshop", {player1choice : 2}, {player2choice : 2});
+            this.scene.start("mapshop");
             }
         });
 
@@ -54,7 +56,7 @@ export default class charselect extends Phaser.Scene{
             } else if (players_with_chars == 1){
                 choicep2 = 3;
             this.scene.stop("characterscreen"); 
-            this.scene.start("mapshop", {player1choice : 3}, {player2choice : 3});
+            this.scene.start("mapshop");
             }
         });
       }
