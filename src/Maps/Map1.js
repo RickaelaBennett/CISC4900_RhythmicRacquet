@@ -12,7 +12,8 @@ var Start = true;  //has game started?
 var Paused = false; //is game paused?
 var winner = 0;     //0 for p1, 1 for p2
 var p1serve = true; //Checks if its p1's serve
-
+var lasthit = true; //checks which player was the last to hit the ball. true for p1, false for p2
+var ground_count = 0;
 
 //browser scene map 1.
 export default class Map1 extends Phaser.Scene{
@@ -65,6 +66,7 @@ export default class Map1 extends Phaser.Scene{
             this.scene.start("optionsscreen");
         });
         
+
         //spawn players depending on what character they choose
         if(choicep1 == 1)
             this.player1 = new melodymatchpoint(this, 50, 650, "mm");
@@ -79,6 +81,7 @@ export default class Map1 extends Phaser.Scene{
             this.player2 = new ryanracquet(this, 1485, 650, "rr");
         else if (choicep2 == 3)
             this.player2 = new sonicserve(this, 1485, 650, "ss");
+        
         this.physics.add.existing(this.player1);
         this.physics.add.existing(this.player2);
         this.player1.body.setCollideWorldBounds(true, 1, 1);
@@ -86,7 +89,7 @@ export default class Map1 extends Phaser.Scene{
         
         //ball        
         //spawns ball on the side of a player depending on which player's turn to serve is
-        if (Start == true){
+        if (Start){
             this.ball = p1serve ? this.add.circle(100, 100, 5, 0xf19d93) : this.add.circle(1550, 100, 5, 0xf19d93);
             this.physics.add.existing(this.ball);
             this.ball.body.setCollideWorldBounds(true, 1, 1);
@@ -120,7 +123,6 @@ export default class Map1 extends Phaser.Scene{
         
         //ball collides w/ net
         this.physics.add.collider(this.net, this.ball);
-        this.physics.add.collider(this.net, this.ball);
 
     }
     update(){
@@ -128,6 +130,15 @@ export default class Map1 extends Phaser.Scene{
         this.player2.update();
         this.player1.setInteractive();
         this.player2.setInteractive();
+
+        const p1_to_ball = this.ball.body.touching.player1;
+        const p2_to_ball = this.ball.body.touching.player2;
+
+        //tracks distance between each player and the ball
+        var x_dist_p1 = -(this.ball.body.x) + this.player1.body.x;
+        var y_dist_p1 = -(this.ball.body.y) + this.player1.body.y;
+        var x_dist_p2 = -(this.ball.body.x) + this.player2.body.x;
+        var y_dist_p2 = -(this.ball.body.y) + this.player2.body.y;
 
         //cant pass barrier
         if(this.physics.collide(this.player1, this.barrier) == true){
@@ -137,19 +148,76 @@ export default class Map1 extends Phaser.Scene{
             this.player2.x += 50
         }
         
-        //ball hit
-        if(this.physics.collide(this.player1, this.ball) == true){
-            //if the ball is touching the players ball flies away
-                this.ball.body.setVelocityX(400);
-                this.ball.body.setVelocityY(150);
-                this.ball.body.setAcceleration(-10);
+        //ball hit - each player must click their to hit the ball
+        this.player1.on("pointerdown", () => {
+            if((x_dist_p1 >= -50 && x_dist_p1 <= 50) && (y_dist_p1 >= -50 && y_dist_p1 <= 50)){
+                //if the ball is touching the players ball flies away
+                    this.ball.body.setVelocityX(400);
+                    this.ball.body.setVelocityY(150);
+                    this.ball.body.setAcceleration(-10);
+                    ground_count = 0;
+                    lasthit = true;
+        }});
+        this.player2.on("pointerdown", () => {
+            if((x_dist_p2 >= -50 && x_dist_p2 <= 50) && (y_dist_p2 >= -50 && y_dist_p2 <= 50)){
+                //if the ball is touching the players ball flies away
+                    this.ball.body.setVelocity(-400);
+                    this.ball.body.setVelocityY(150);
+                    this.ball.body.setAcceleration(10);
+                    ground_count = 0;
+                    lasthit = false;
+        }});
+
+        //scoring.
+        this.score1 = this.add.text(50, 100, "Player 1 Score: " + p1score, {
+            color: 0x000000
+        });
+
+        if(this.ball.body.touching.net){
+            if(lasthit)
+                p2score += 15;
+
+            else
+                this.score1;
+                p1score += 15;
         }
-        if(this.physics.collide(this.ball, this.player2) == true){
-            //if the ball is touching the players ball flies away
-                this.ball.body.setVelocity(-400);
-                this.ball.body.setVelocityY(150);
-                this.ball.body.setAcceleration(10);
+
+        if(!(p1_to_ball || p2_to_ball) && this.ball.y >= 645){
+            ground_count +=1;
+            this.ball.y -= 6;
+            Start = false;
+            if (lasthit && ground_count == 2){
+                p1score += 15;
+                p1serve = !p1serve;
+                if(p1score > 45){
+                    winner = 1;
+                    this.scene.stop("map1"); 
+                    this.music.pause();
+                    this.scene.start("winnerscreen");
+                }
+                this.reset();
+            } else if (!lasthit && ground_count == 2){
+                p2score += 15;
+                p1serve = !p1serve;
+                if(p2score > 45){
+                    winner = 2;
+                    this.scene.stop("map1"); 
+                    this.music.pause();
+                    this.scene.start("winnerscreen");
+                }
+                this.reset(); 
+            }
+            
         }
+    }
+    reset(){
+        this.player1.setPosition(50, 650);
+        this.player2.setPosition(1485, 650);
+        this.ball.setVisible(true);
+        p1serve ? this.ball.setPosition(100, 100) : this.ball.setPosition(1550, 100);
+        ground_count = 0;
+        Start = true;
+        this.ball.body.setVelocity(0, 100);
     }
 
 }

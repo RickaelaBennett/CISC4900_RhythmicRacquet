@@ -12,6 +12,8 @@ export default class charselect extends Phaser.Scene{
         this.load.image("red", "assets/images/red.png");
         this.load.image("blue", "assets/images/blue.png");
         this.load.image("green", "assets/images/green.png");
+        this.load.spritesheet("p1", "../p1_coin_spritesheet.png");
+        this.load.spritesheet("p2", "../p2_coin_spritesheet.png");
       }
       create(){
         //For each player, they have a choice between 3 characters, each character will be mapped to a number.
@@ -21,6 +23,7 @@ export default class charselect extends Phaser.Scene{
 
         const char1 = this.add.image(384, 325, "red");
         //changes to game screen once the Play is pressed
+
         char1.setInteractive();
         char1.on("pointerdown", () => {
             if (players_with_chars == 0){

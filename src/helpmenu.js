@@ -10,11 +10,11 @@ export default class helpmenu extends Phaser.Scene{
         this.add.image("background", "assets/images/bg.jpg")
     }
     create(){
-        this.add.text(350, 100, 'Help!')
+        this.add.text(740, 50, 'Help!')
         //Instructions to on how to play game to be added below
 
         //Some Menu Navigation
-        const optButton = this.add.text(600, 10, "Options",
+        const optButton = this.add.text(1400, 10, "Options",
         {
             fontFamily: "Consolas",
             fontSize: "20px"
@@ -25,7 +25,7 @@ export default class helpmenu extends Phaser.Scene{
             this.scene.stop("mainmenu");
             this.scene.start("optionsscreen");
         });
-        const mainMenuButton = this.add.text(700, 10, "Main Menu",
+        const mainMenuButton = this.add.text(1400, 60, "Main Menu",
         {
             fontFamily: "Consolas",
             fontSize: "20px"
@@ -36,6 +36,9 @@ export default class helpmenu extends Phaser.Scene{
             this.scene.stop("helpscreen");
             this.scene.start("mainmenu");
         });
+
+        this.add.text(630, 150, "Welcome to Rhythmic Racquet!");
+        this.add.text(300, 200, "(This is how you play)")
 
     }
 }

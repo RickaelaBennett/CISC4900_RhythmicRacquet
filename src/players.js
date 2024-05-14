@@ -19,30 +19,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
   }
   handleInput(){
     this.body.setVelocity(0);
-
+    var up = this.key.w.isDown;
+    var down = this.key.s.isDown;
+    var left = this.key.a.isDown
+    var right = this.key.d.isDown
+    
     //movement
-    if (this.key.a.isDown) {
+    if (left) {
         this.x -= 5;
-    } else if (this.key.d.isDown) {
+    } else if (right) {
         this.x += 5;
-    } else if (this.key.w.isDown) {
-        var new_pos = this.y-100;
-        var at_height = false
-        if(this.y < new_pos){
-          for(var i = 0; i < new_pos; i++){
-            this.y -= 10;
-          }   
-        } else if (this.y >= new_pos){
-          this.y = new_pos;
-          at_height = true;
-        }
-        if(at_height){
-          for(var i = 0; i < new_pos+100; i++){
-            this.y += 10;
-          }  
-        }
-
-    } else if (this.key.s.isDown) {
+    } else if (up) {
+        this.y -=10;
+    } else if (down) {
         this.y += 5;
     } else {
         this.setVelocityX(0);

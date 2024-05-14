@@ -9,6 +9,8 @@ import Map2 from "./maps/map2.js";
 import Map3 from "./maps/map3.js";
 import choosemap from "./choosemap.js"
 
+import winnerscene from "./winnerscene.js";
+
 
 
 //game configurations
@@ -37,6 +39,7 @@ game.scene.add("map1", Map1);
 game.scene.add("map2", Map2);
 game.scene.add("map3", Map3);
 game.scene.add("characterscreen", charselect);
+game.scene.add("winnerscreen", winnerscene);
 
 //runs our main menu
 game.scene.start("mainmenu");
