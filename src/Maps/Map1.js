@@ -26,6 +26,7 @@ export default class Map1 extends Phaser.Scene{
         this.load.image("rr", "./assets/images/blue.png");
         this.load.image("ss", "./assets/images/green.png");
         this.load.audio("musicbg", "assets/audio/Map1.mp3")
+        this.load.audio("hit", "assets/audio/Ball_Hit.wav");
     }
     create(){
         var time = this.time;
@@ -36,6 +37,7 @@ export default class Map1 extends Phaser.Scene{
         //music
         this.music = this.sound.add("musicbg", { loop: true });
         this.music.play();
+        this.ballhit = this.sound.add("hit", {loop: false});
         
         //the buttons
         //help
@@ -155,6 +157,7 @@ export default class Map1 extends Phaser.Scene{
                     this.ball.body.setVelocityX(400);
                     this.ball.body.setVelocityY(150);
                     this.ball.body.setAcceleration(-10);
+                    this.ballhit.play();
                     ground_count = 0;
                     lasthit = true;
         }});
@@ -164,6 +167,7 @@ export default class Map1 extends Phaser.Scene{
                     this.ball.body.setVelocity(-400);
                     this.ball.body.setVelocityY(150);
                     this.ball.body.setAcceleration(10);
+                    this.ballhit.play();
                     ground_count = 0;
                     lasthit = false;
         }});
