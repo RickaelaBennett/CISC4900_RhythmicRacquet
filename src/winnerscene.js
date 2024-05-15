@@ -8,6 +8,19 @@ export default class winnerscene extends Phaser.Scene{
     }
     create(){
         this.add.text(700, 100, "WINNER");
+        if (winner == 1){
+            this.add.text(650, 300, "PLAYER 1!", {
+                fontFamily: "Consolas",
+                fontSize: "72px",
+                color: 0x650D1B
+            });
+        } else if (winner == 2){
+            this.add.text(650, 300, "PLAYER 2!", {
+                fontFamily: "Consolas",
+                fontSize: "72px",
+                color: 0x650D1B
+            });
+        }
     }
     update(){
 

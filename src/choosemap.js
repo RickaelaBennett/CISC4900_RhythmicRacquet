@@ -6,6 +6,8 @@ export default class choosemap extends Phaser.Scene{
         this.load.image("Map", "assets/images/bg.png");
       }
       create(){
+        this.add.text(700, 100, "Map Select");
+
         const map1 = this.add.image(384, 325, "Map");
         //changes to game screen once the Play is pressed
         map1.setInteractive();

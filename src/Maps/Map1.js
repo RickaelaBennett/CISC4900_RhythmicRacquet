@@ -34,6 +34,7 @@ export default class Map1 extends Phaser.Scene{
         var background = this.add.image(0, 0, "map1bg")
         background.setOrigin(0,0);
         
+        
         //music
         this.music = this.sound.add("musicbg", { loop: true });
         this.music.play();
@@ -125,6 +126,7 @@ export default class Map1 extends Phaser.Scene{
         
         //ball collides w/ net
         this.physics.add.collider(this.net, this.ball);
+        //this.hitball();
 
     }
     update(){
@@ -150,27 +152,6 @@ export default class Map1 extends Phaser.Scene{
             this.player2.x += 50
         }
         
-        //ball hit - each player must click their to hit the ball
-        this.player1.on("pointerdown", () => {
-            if((x_dist_p1 >= -50 && x_dist_p1 <= 50) && (y_dist_p1 >= -50 && y_dist_p1 <= 50)){
-                //if the ball is touching the players ball flies away
-                    this.ball.body.setVelocityX(400);
-                    this.ball.body.setVelocityY(150);
-                    this.ball.body.setAcceleration(-10);
-                    this.ballhit.play();
-                    ground_count = 0;
-                    lasthit = true;
-        }});
-        this.player2.on("pointerdown", () => {
-            if((x_dist_p2 >= -50 && x_dist_p2 <= 50) && (y_dist_p2 >= -50 && y_dist_p2 <= 50)){
-                //if the ball is touching the players ball flies away
-                    this.ball.body.setVelocity(-400);
-                    this.ball.body.setVelocityY(150);
-                    this.ball.body.setAcceleration(10);
-                    this.ballhit.play();
-                    ground_count = 0;
-                    lasthit = false;
-        }});
 
         //scoring.
         this.score1 = this.add.text(50, 100, "Player 1 Score: " + p1score, {
@@ -213,6 +194,27 @@ export default class Map1 extends Phaser.Scene{
             }
             
         }
+        //ball hit - each player must click their to hit the ball
+        this.player1.on("pointerdown", () => {
+            if((x_dist_p1 >= -50 && x_dist_p1 <= 50) && (y_dist_p1 >= -50 && y_dist_p1 <= 50)){
+                //if the ball is touching the players ball flies away
+                    this.ball.body.setVelocityX(400);
+                    this.ball.body.setVelocityY(150);
+                    this.ball.body.setAcceleration(-10);
+                    this.ballhit.play();
+                    ground_count = 0;
+                    lasthit = true;
+        }});
+        this.player2.on("pointerdown", () => {
+            if((x_dist_p2 >= -50 && x_dist_p2 <= 50) && (y_dist_p2 >= -50 && y_dist_p2 <= 50)){
+                //if the ball is touching the players ball flies away
+                    this.ball.body.setVelocity(-400);
+                    this.ball.body.setVelocityY(150);
+                    this.ball.body.setAcceleration(10);
+                    this.ballhit.play();
+                    ground_count = 0;
+                    lasthit = false;
+        }});
     }
     reset(){
         this.player1.setPosition(50, 650);

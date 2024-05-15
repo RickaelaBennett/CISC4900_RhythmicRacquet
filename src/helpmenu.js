@@ -38,8 +38,8 @@ export default class helpmenu extends Phaser.Scene{
         });
 
         this.add.text(630, 150, "Welcome to Rhythmic Racquet!");
-        this.add.text(300, 200, "(This is how you play)")
-
-    }
-}
-
+        this.add.text(300, 200, "Rhythmic Racquet is a digital tennis game.");
+        this.add.text(300, 225, "Press 'w' to move up, Press 's' to move down");
+        this.add.text(300, 250, "Press 'a' to move left, Press 'd' to move right");
+        this.add.text(300, 275, "Click to hit the ball.");
+    }}

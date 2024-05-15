@@ -62,5 +62,13 @@ export default class charselect extends Phaser.Scene{
             this.scene.start("mapshop");
             }
         });
+
+        const back = this.add.text(700, 500, "Back");
+        back.setInteractive();
+        back.on("pointerdown", () => {
+            if (players_with_chars > 0){
+                players_with_chars -= 1;
+            }
+        });
       }
 }
